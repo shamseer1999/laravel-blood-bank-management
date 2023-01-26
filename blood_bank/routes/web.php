@@ -21,13 +21,19 @@ Route::match(['GET','POST'],'/', function (Request $request) {
     {
         $username=request('username');
         $password=request('password');
+        $remember=request('remember');
 
         $credential=array(
             'username'=>$username,
             'password'=>$password
         );
 
-        if(auth()->attempt($credential))
+        if(!empty($remeber)){
+            if(auth($credential,true))
+            {
+                return redirect(route('dashbord'))->with('success','Admin logged successfully');
+            }
+        }elseif(auth()->attempt($credential))
         {
             return redirect(route('dashbord'))->with('success','Admin logged successfully');
         }
@@ -62,7 +68,10 @@ Route::post('/register',function(Request $request){
 Route::middleware('logged_user')->group(function(){
     Route::get('/dashbord',[DashbordController::class,'index'])->name('dashbord');
     Route::get('/logout',function(){
-        auth()->logout();
+        
+            auth()->logout();
+        
+        
         return redirect()->route('login');
     })->name('logout');
 });
