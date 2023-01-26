@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashbordController;
+use App\Models\User;
+use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::match(['GET','POST'],'/', function (Request $request) {
+    if($request->isMethod('post'))
+    {
+        $username=request('username');
+        $password=request('password');
+
+        $credential=array(
+            'username'=>$username,
+            'password'=>$password
+        );
+
+        if(auth()->attempt($credential))
+        {
+            return redirect(route('dashbord'))->with('success','Admin logged successfully');
+        }
+        else
+        {
+            return redirect(route('login'))->with('danger','Invalid login credantials');
+        }
+    }
+    return view('login');
+})->name('login');
+Route::get('/register',function(){
+    return view('admin.register');
+})->name('register');
+Route::post('/register',function(Request $request){
+    $validate=$request->validate([
+        'name'=>'required',
+        'email'=>'required',
+        'phone'=>'required|unique:users',
+        'username'=>'required|unique:users',
+        'password'=>'required'
+    ]);
+    User::create([
+        'name'=>request('name'),
+        'email'=>request('email'),
+        'password'=>bcrypt(request('password')),
+        'username'=>request('username'),
+        'phone'=>request('phone')
+
+    ]);
+    return redirect(route('dashbord'))->with('success','Admin registerd successfully');
+})->name('register_data');
+Route::middleware('logged_user')->group(function(){
+    Route::get('/dashbord',[DashbordController::class,'index'])->name('dashbord');
+    Route::get('/logout',function(){
+        auth()->logout();
+        return redirect()->route('login');
+    })->name('logout');
 });
+
