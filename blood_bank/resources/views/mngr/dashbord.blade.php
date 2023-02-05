@@ -1,7 +1,5 @@
 @extends('mngr.layout.template')
 
-    @include('mngr.layout.pageheader')
-
 @section('content')
     
 <div class="row">

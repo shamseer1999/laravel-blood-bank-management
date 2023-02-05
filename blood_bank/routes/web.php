@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\DonnerController;
 use App\Models\User;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -74,5 +75,6 @@ Route::middleware('logged_user')->group(function(){
         
         return redirect()->route('login');
     })->name('logout');
+    Route::match(['get','post'],'/donner-register',[DonnerController::class,'add'])->name('add_donner');
 });
 
