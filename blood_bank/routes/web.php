@@ -45,9 +45,11 @@ Route::match(['GET','POST'],'/', function (Request $request) {
     }
     return view('login');
 })->name('login');
+
 Route::get('/register',function(){
     return view('admin.register');
 })->name('register');
+
 Route::post('/register',function(Request $request){
     $validate=$request->validate([
         'name'=>'required',
@@ -66,8 +68,14 @@ Route::post('/register',function(Request $request){
     ]);
     return redirect(route('dashbord'))->with('success','Admin registerd successfully');
 })->name('register_data');
+
 Route::middleware('logged_user')->group(function(){
     Route::get('/dashbord',[DashbordController::class,'index'])->name('dashbord');
+
+    Route::match(['get','post'],'/donner-register',[DonnerController::class,'add'])->name('add_donner');
+    Route::get('/all-donners',[DonnerController::class,'index'])->name('donners');
+
+
     Route::get('/logout',function(){
         
             auth()->logout();
@@ -75,6 +83,6 @@ Route::middleware('logged_user')->group(function(){
         
         return redirect()->route('login');
     })->name('logout');
-    Route::match(['get','post'],'/donner-register',[DonnerController::class,'add'])->name('add_donner');
+    
 });
 

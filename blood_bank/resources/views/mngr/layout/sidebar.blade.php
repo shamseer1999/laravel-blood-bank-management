@@ -17,36 +17,36 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashbord')}}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-title">Basic UI Elements</span>
+          <span class="menu-title">Donners</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('donners')}}">Donners List</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('add_donner')}}">New Donner</a></li>
           </ul>
         </div>
-      </li> --}}
-      <li class="nav-item">
+      </li>
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{route('add_donner')}}">
           <span class="menu-title">New Donner</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> --}}
+      {{-- <li class="nav-item">
         <a class="nav-link" href="pages/forms/basic_elements.html">
           <span class="menu-title">Forms</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
-      </li>
+      </li> --}}
       {{-- <li class="nav-item">
         <a class="nav-link" href="pages/charts/chartjs.html">
           <span class="menu-title">Charts</span>

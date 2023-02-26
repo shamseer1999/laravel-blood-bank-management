@@ -8,6 +8,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -22,7 +23,7 @@
     <div class="container-scroller">
       <div class="row p-0 m-0 proBanner" id="proBanner">
         <div class="col-md-12 p-0 m-0">
-          <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+          {{-- <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
             <div class="ps-lg-1">
               <div class="d-flex align-items-center justify-content-between">
                 <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with this template!</p>
@@ -35,7 +36,7 @@
                 <i class="mdi mdi-close text-white me-0"></i>
               </button>
             </div>
-          </div>
+          </div> --}} 
         </div>
       </div>
       <!-- partial:partials/_navbar.html -->
@@ -195,7 +196,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            @include('mngr.layout.pageheader')
+            {{-- @include('mngr.layout.pageheader') --}}
             @yield('content')
             
           </div>
