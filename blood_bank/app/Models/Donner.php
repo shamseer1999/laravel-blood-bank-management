@@ -17,7 +17,13 @@ class Donner extends Model
         'city',
         'district',
         'address',
-        'profile_image'
+        'profile_image',
+        'age',
+        'dob',
+        'donner_job',
+        'height',
+        'weight',
+        'blood_group'
     ];
 
     public function districts()

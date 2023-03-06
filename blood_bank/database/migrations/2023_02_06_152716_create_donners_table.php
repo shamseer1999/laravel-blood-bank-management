@@ -23,6 +23,12 @@ class CreateDonnersTable extends Migration
             $table->string('district',100);
             $table->string('address');
             $table->string('profile_image');
+            $table->integer('age');
+            $table->date('dob');
+            $table->string('donner_job',100);
+            $table->integer('height');
+            $table->float('weight');
+            $table->integer('blood_group')->comment('1=>A+ve,2=>B+ve,3=>AB+ve,4=>o+ve,5=>A-ve,6=>B-ve,7=>AB-ve,8=>O-ve');
             $table->timestamps();
         });
     }

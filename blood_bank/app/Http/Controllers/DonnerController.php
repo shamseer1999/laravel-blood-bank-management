@@ -33,7 +33,13 @@ class DonnerController extends Controller
                 'email'=>'required',
                 'city'=>'required',
                 'district'=>'required',
-                'address'=>'required'
+                'address'=>'required',
+                'age'=>'required',
+                'dob'=>'required',
+                'job'=>'required',
+                'height'=>'required',
+                'weight'=>'required',
+                'blood'=>'required'
             ]);
 
             $filename='';
@@ -56,10 +62,16 @@ class DonnerController extends Controller
                 'city'=>$validated['city'],
                 'district'=>$validated['district'],
                 'address'=>$validated['address'],
-                'profile_image'=>$filename
+                'profile_image'=>$filename,
+                'age'=>$validated['age'],
+                'dob'=>$validated['dob'],
+                'donner_job'=>$validated['job'],
+                'height'=>$validated['height'],
+                'weight'=>$validated['weight'],
+                'blood_group'=>$validated['blood']
             );
             Donner::create($insert_data);
-            return redirect(route('dashbord'))->with('success','New donner added successfully');
+            return redirect(route('donners'))->with('success','New donner added successfully');
 
             
         }
