@@ -14446,5 +14446,18 @@ dl {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1; }
+  .avatar{
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .ul-inline{
+    list-style-type: none;
+  }
+  .url-anchor a{
+    text-decoration: none;
+  }
 
 /*# sourceMappingURL=style.css.map */

@@ -48,7 +48,7 @@ class DonnerController extends Controller
                  $extension=request('pr_image')->extension();
                  $filename="user_profile_".time().'.'.$extension;
                 // //Fullsize store
-                 request('pr_image')->storeAs('profile',$filename);
+                 request('pr_image')->storeAs('public/profile',$filename);
 
                 //resize
                 //$image_resize=Image::make(request('pr_image'));
@@ -77,5 +77,13 @@ class DonnerController extends Controller
         }
         $data['districts']=DB::table('districts')->get();
         return view('mngr.donner.add',$data);
+    }
+
+    public function view($id)
+    {
+        $donner_id=decrypt($id);
+        $donner_details=Donner::where('id',$donner_id)->first();
+        $data['result']=$donner_details;
+        return view('mngr.donner.view',$data);
     }
 }
