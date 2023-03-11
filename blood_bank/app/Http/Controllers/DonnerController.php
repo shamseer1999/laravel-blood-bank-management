@@ -86,4 +86,46 @@ class DonnerController extends Controller
         $data['result']=$donner_details;
         return view('mngr.donner.view',$data);
     }
+
+    public function edit(Request $request,$id)
+    {
+        $donner_id=decrypt($id);
+        $edit_data=Donner::find($donner_id);
+
+        if($request->isMethod('post'))
+        {
+            $validated=$request->validate([
+                'first_name'=>'required',
+                'last_name'=>'required',
+                'city'=>'required',
+                'district'=>'required',
+                'address'=>'required',
+                'age'=>'required',
+                'job'=>'required',
+                'height'=>'required',
+                'weight'=>'required',
+                'blood'=>'required'
+            ]);
+
+            $edit_data->first_name=$validated['first_name'];
+            $edit_data->last_name=$validated['last_name'];
+            $edit_data->city=$validated['city'];
+            $edit_data->district=$validated['district'];
+            $edit_data->address=$validated['address'];
+            $edit_data->age=$validated['age'];
+            $edit_data->donner_job=$validated['job'];
+            $edit_data->height=$validated['height'];
+            $edit_data->weight=$validated['weight'];
+            $edit_data->blood_group=$validated['blood'];
+            $edit_data->save();
+
+            return redirect(route('donners'))->with('success','Donner updated successfully');
+        }
+
+        $data['districts']=DB::table('districts')->get();
+
+        $data['edit_data']=$edit_data;
+
+        return view('mngr.donner.edit',$data);
+    }
 }

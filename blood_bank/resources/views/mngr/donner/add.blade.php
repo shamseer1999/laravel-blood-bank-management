@@ -2,9 +2,13 @@
 @section('content')
     <div class="row">
         <div class="card">
-            {{-- <div class="card-header w-100 mt-1">
-              Add Donner
-            </div> --}}
+            <ul class="ul-inline">
+              <li class="url-anchor">
+                  <a href="{{route('dashbord')}}">Home<small>/</small></a>
+                  <a href="{{route('donners')}}">Donners</a>
+                  <a href="{{route('donners')}}"><small> &larr;</small> back</a>
+              </li>
+            </ul>
             <div class="card-body">
               <form method="post" enctype="multipart/form-data">
                 @csrf

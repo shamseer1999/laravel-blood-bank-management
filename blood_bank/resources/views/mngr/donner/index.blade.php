@@ -65,7 +65,7 @@
                                             <td> {{$item->districts->district_name}}</td>   
                                             <td>
                                                 <a href="{{route('view_donner',encrypt($item->id))}}" title="View" style="color: #27367f;"><i class="fa fa-eye" style="font-size:20px"></i></a>
-                                                <a  href="#ui-basic" title="Edit" style="color: #27367f;"><i class="fa fa-pencil" style="font-size:20px"></i></a>
+                                                <a  href="{{route('edit_donner',encrypt($item->id))}}" title="Edit" style="color: #27367f;"><i class="fa fa-pencil" style="font-size:20px"></i></a>
                                                 
                                             </td>
                                       </tr>
