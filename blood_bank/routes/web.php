@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\DonnerController;
+use App\Http\Controllers\AdminsController;
 use App\Models\User;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,8 @@ Route::match(['GET','POST'],'/', function (Request $request) {
 
         $credential=array(
             'username'=>$username,
-            'password'=>$password
+            'password'=>$password,
+            'deleted_at'=>NULL
         );
 
         if(!empty($remeber)){
@@ -72,12 +74,18 @@ Route::post('/register',function(Request $request){
 Route::middleware('logged_user')->group(function(){
     Route::get('/dashbord',[DashbordController::class,'index'])->name('dashbord');
 
+    //Donners
     Route::match(['get','post'],'/donner-register',[DonnerController::class,'add'])->name('add_donner');
     Route::get('/all-donners',[DonnerController::class,'index'])->name('donners');
     Route::get('/view-donner{donner_id}',[DonnerController::class,'view'])->name('view_donner');
     Route::match(['get','post'],'/edit-donner{donner_id}',[DonnerController::class,'edit'])->name('edit_donner');
 
-
+    //Admins
+    Route::get('/admins',[AdminsController::class,'index'])->name('admins');
+    Route::match(['get','post'],'/edit{adm_id}',[AdminsController::class,'edit'])->name('admin_edit');
+    Route::get('delete-admin{adm_id}',[AdminsController::class,'delete'])->name('admin_delete');
+    Route::get('activate-admin{adm_id}',[AdminsController::class,'activate'])->name('admin_activate');
+    
     Route::get('/logout',function(){
         
             auth()->logout();

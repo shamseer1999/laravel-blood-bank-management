@@ -23,6 +23,21 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-role" aria-expanded="false" aria-controls="ui-role">
+          <span class="menu-title">Admins & Roles</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        </a>
+        <div class="collapse" id="ui-role">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('admins')}}">Admins</a></li>
+            <li class="nav-item"> 
+              <a class="nav-link" href="">Roles</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Donners</span>
           <i class="menu-arrow"></i>

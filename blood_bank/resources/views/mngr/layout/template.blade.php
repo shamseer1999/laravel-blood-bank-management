@@ -196,7 +196,23 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            {{-- @include('mngr.layout.pageheader') --}}
+            @if (session()->has('success'))
+                <div class="row" id="message-display-success">
+                  <div class="card-body alert alert-dismissible" style="background-color:lightgreen">
+                    {{session('success')}}
+                    <i class="fa fa-close float-end" style="font-size:24px" id="close-btn-success"></i>
+                  </div>
+                </div>
+                
+            @endif
+            @if (session()->has('danger'))
+            <div class="row" id="message-display-danger">
+              <div class="card-body alert alert-dismissible" style="background-color:lightcoral">
+                {{session('danger')}}
+                <i class="fa fa-close float-end" style="font-size:24px" id="close-btn-danger"></i>
+              </div>
+            </div>
+            @endif
             @yield('content')
             
           </div>
@@ -231,5 +247,13 @@
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
     <script src="{{asset('assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
+    <script>
+      $('#close-btn-success').click(function(){
+        $('#message-display-success').css('display','none')
+      })
+      $('#close-btn-danger').click(function(){
+        $('#message-display-danger').css('display','none')
+      })
+    </script>
   </body>
 </html>

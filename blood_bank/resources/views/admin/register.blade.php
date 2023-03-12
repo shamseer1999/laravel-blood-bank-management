@@ -62,6 +62,7 @@
               <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg border-primary" />
               
             </div>
+            <p><small> have already an account ? <a href="{{route('login')}}">login here</a></small></p>
             
             
 
