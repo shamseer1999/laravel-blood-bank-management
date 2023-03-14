@@ -32,7 +32,10 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('admins')}}">Admins</a></li>
             <li class="nav-item"> 
-              <a class="nav-link" href="">Roles</a>
+              <a class="nav-link" href="{{route('roles')}}">Roles</a>
+              <ul class="ps-4">
+                <a href="{{route('add_role')}}" class="text-decoration-none text-dark"><small> &rarr;</small> New Role</a>
+              </ul>
             </li>
           </ul>
         </div>

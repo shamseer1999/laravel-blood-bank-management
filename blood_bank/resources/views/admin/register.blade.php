@@ -56,6 +56,18 @@
         
                     
                 </div>
+                <div class="col-lg-12">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="typeEmailX-2">Roles</label>
+                    <select name="roles" id="" class="form-control border-primary" required>
+                      @if (!empty($roles))
+                          @foreach ($roles as $item)
+                              <option value="{{$item->id}}">{{$item->role_name}}</option>
+                          @endforeach
+                      @endif
+                    </select>
+                  </div>
+                </div>
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="typePasswordX-2">Password</label>

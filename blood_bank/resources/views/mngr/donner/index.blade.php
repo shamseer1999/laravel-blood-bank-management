@@ -9,10 +9,6 @@
             </li>
           </ul>
             <div class="card-body">
-                {{-- <div class="row"> --}}
-                {{-- <div class="col-md-12 grid-margin stretch-card"> --}}
-                    {{-- <div class="card"> --}}
-                      {{-- <div class="card-body"> --}}
                         <h4 class="card-title">All Donners</h4>
                         <div class="table-responsive">
                           <table class="table">
