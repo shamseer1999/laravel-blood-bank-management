@@ -12,10 +12,27 @@ use Image;
 
 class DonnerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $donners=Donner::paginate(10);
-
+        if($request->filter == 'clear')
+        {
+            return redirect()->route('donners');
+        }
+        
+        $donners=Donner::when($request->fname !=null,function($query) use($request){
+            return $query->where('first_name','like','%'.$request->fname.'%');
+        })
+        ->when($request->lname !=null,function($query) use($request){
+            return $query->where('last_name','like','%'.$request->lname.'%');
+        })
+        ->when($request->district !=null,function($query) use($request){
+            return $query->where('district','=',$request->district);
+        })
+        ->when($request->group !=null,function($query) use($request){
+            return $query->where('blood_group','=',$request->group);
+        })
+        ->paginate(10);
+        $data['districts']=DB::table('districts')->get();
         $data['result']=$donners;
         return view('mngr.donner.index',$data);
         

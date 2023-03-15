@@ -9,7 +9,51 @@
             </li>
           </ul>
             <div class="card-body">
-                        <h4 class="card-title">All Donners</h4>
+                        <h4 class="card-title">All Donners</h4><br>
+                        <form action="" method="GET">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <label for="">First Name</label>
+                            <input type="text" name="fname" value="{{Request::get('fname')}}" class="form-control border-primary rounded">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="">Last Name</label>
+                            <input type="text" name="lname" value="{{Request::get('lname')}}" class="form-control border-primary rounded">
+                          </div>
+                          <div class="col-md-2">
+                            <label for="">District</label>
+                            <select name="district" id="" class="form-select border-primary rounded">
+                              <option value="">--SELECT--</option>
+                              @if (!empty($districts))
+                                  @foreach ($districts as $item)
+                                      <option value="{{$item->id}}" {{Request::get('district') == $item->id ? 'selected' : ''}}>{{$item->district_name}}</option>
+                                  @endforeach
+                              @endif
+                            </select>
+                          </div>
+                          <div class="col-md-2">
+                            <label for="">Blood Group</label>
+                            <select name="group" id="" class="form-select border-primary rounded">
+                              <option value="">--SELECT--</option>
+                              <option value="1" {{Request::get('group') == 1 ? 'selected' : ''}}>A+ve</option>
+                              <option value="2" {{Request::get('group') == 2 ? 'selected' : ''}}>B+ve</option>
+                              <option value="3" {{Request::get('group') == 3 ? 'selected' : ''}}>AB+ve</option>
+                              <option value="4" {{Request::get('group') == 4 ? 'selected' : ''}}>O+ve</option>
+                              <option value="5" {{Request::get('group') == 5 ? 'selected' : ''}}>A-ve</option>
+                              <option value="6" {{Request::get('group') == 6 ? 'selected' : ''}}>B-ve</option>
+                              <option value="7" {{Request::get('group') == 7 ? 'selected' : ''}}>AB-ve</option>
+                              <option value="8" {{Request::get('group') == 8 ? 'selected' : ''}}>O-ve</option>
+                            </select>
+                          </div>
+                          
+                          <div class="col-md-2 pt-3">
+                            <input type="submit" value="Filter" name="filter" class="btn btn-sm btn-primary rounded">
+                            <input type="submit" value="clear" name="filter" class="btn btn-sm btn-primary rounded">
+                          </div>
+                        </div>
+                      <br>
+                    <br>
+                  </form>
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
@@ -66,6 +110,10 @@
                                             </td>
                                       </tr>
                                     @endforeach
+                                    @else
+                                      <tr>
+                                        <td colspan="7">No record found</td>
+                                      </tr>
                                 @endif
                               
                               
