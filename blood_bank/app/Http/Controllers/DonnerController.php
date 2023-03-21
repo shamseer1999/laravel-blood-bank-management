@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 
+use Rap2hpoutre\FastExcel\FastExcel;
+
 use Image;
 
 class DonnerController extends Controller
@@ -19,7 +21,7 @@ class DonnerController extends Controller
             return redirect()->route('donners');
         }
         
-        $donners=Donner::when($request->fname !=null,function($query) use($request){
+        $donners=Donner::with('districts')->when($request->fname !=null,function($query) use($request){
             return $query->where('first_name','like','%'.$request->fname.'%');
         })
         ->when($request->lname !=null,function($query) use($request){
@@ -32,6 +34,27 @@ class DonnerController extends Controller
             return $query->where('blood_group','=',$request->group);
         })
         ->paginate(10);
+
+        //Excel download
+        if($request->filter == 'Export Data')
+        {
+            $donner=collect($donners->toArray()['data']);
+
+           // dd($donner);
+           $excelData=$donner->map(function($donner,$key){
+                $coll=(object)$donner;
+                return[
+                    'name'=>$coll->first_name.' '.$coll->last_name,
+                    'Phone' =>$coll->phone,
+                    'City' =>$coll->city,
+                    'District' =>$coll->districts['district_name'],
+                    'Blood Group'=>$coll->blood_group_text
+                ];
+           });
+           //dd($a);
+           return (new FastExcel($excelData))->download('donners-list.xlsx');
+        }
+
         $data['districts']=DB::table('districts')->get();
         $data['result']=$donners;
         return view('mngr.donner.index',$data);

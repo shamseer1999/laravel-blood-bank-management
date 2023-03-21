@@ -53,7 +53,7 @@
                         </div>
                       <br>
                     <br>
-                  </form>
+                  
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
@@ -119,6 +119,12 @@
                               
                             </tbody>
                           </table>
+                          @if (sizeof($result) >0)
+                            <div><br>
+                              <input type="submit" name="filter" class="btn btn-primary" style="float:right;" value="Export Data">
+                            </div> 
+                          @endif
+                          
 
                           <!--Pagination-->
                           <div>
@@ -127,6 +133,7 @@
                           <!--Pagination-->
 
                         </div>
+                      </form>
                       {{-- </div> --}}
                     {{-- </div> --}}
                   {{-- </div> --}}

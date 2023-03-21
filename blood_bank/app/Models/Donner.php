@@ -30,4 +30,26 @@ class Donner extends Model
     {
         return $this->hasOne(District::class,'id','district');
     }
+
+    public function getBloodGroupTextAttribute()
+    {
+        if($this->blood_group ==1){
+            return "A +ve";
+        }elseif($this->blood_group ==2){
+            return "B +ve";
+        }elseif($this->blood_group ==3){
+            return "AB +ve";
+        }elseif($this->blood_group ==4){
+            return "O +ve";
+        }elseif($this->blood_group ==5){
+            return "A -ve";
+        }elseif($this->blood_group ==6){
+            return "B -ve";
+        }elseif($this->blood_group == 7){
+            return "AB -ve";
+        }else{
+            return "O -ve";
+        }
+    }
+    protected $appends=['blood_group_text'];
 }
