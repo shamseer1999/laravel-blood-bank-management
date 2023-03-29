@@ -33,6 +33,12 @@ class DonnerController extends Controller
         ->when($request->group !=null,function($query) use($request){
             return $query->where('blood_group','=',$request->group);
         })
+        ->when($request->start !=null,function($query) use($request){
+            return $query->whereDate('created_at','>=',$request->start);
+        })
+        ->when($request->end !=null,function($query) use($request){
+            return $query->whereDate('created_at','<=',$request->end);
+        })
         ->paginate(10);
 
         //Excel download
