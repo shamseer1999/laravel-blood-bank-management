@@ -247,6 +247,7 @@
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
     <script src="{{asset('assets/js/todolist.js')}}"></script>
     <!-- End custom js for this page -->
+    
     <script>
       $('#close-btn-success').click(function(){
         $('#message-display-success').css('display','none')

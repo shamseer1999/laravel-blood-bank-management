@@ -42,8 +42,8 @@
   <div class="row">
     <div class="col-md-7 grid-margin stretch-card">
       <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Project Status</h4>
+        <div class="card-body" id="group-chart">
+          {{-- <h4 class="card-title">Project Status</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -117,7 +117,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -180,3 +180,26 @@
     </div>
   </div>
   @endsection
+  <!--Graph goes-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Blood Group', 'Count'],
+        <?php echo $graph_list;?>
+      ]);
+
+      var options = {
+        title: 'Donners in Groups',
+        is3D: true,
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('group-chart'));
+      chart.draw(data, options);
+    }
+  </script>
+  <!--Graph goes-->
+  
