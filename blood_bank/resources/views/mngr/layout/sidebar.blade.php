@@ -50,6 +50,7 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('donners')}}">Donners List</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('add_donner')}}">New Donner</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('add_recent_donators')}}">Add Recent Donnetors</a></li>
           </ul>
         </div>
       </li>

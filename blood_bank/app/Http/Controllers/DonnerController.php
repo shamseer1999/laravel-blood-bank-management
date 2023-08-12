@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donner;
-
+use App\Models\donnetedUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -173,5 +174,37 @@ class DonnerController extends Controller
         $data['edit_data']=$edit_data;
 
         return view('mngr.donner.edit',$data);
+    }
+
+    public function addRecentDonators(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $validated = $request->validate([
+                'donnated_date' =>'required',
+                'district' =>'required',
+                'donners' =>'required'
+            ]);
+
+            $insert_data = array(
+                'donated_date' =>$validated['donnated_date'],
+                'donner_id' =>$validated['donners']
+            );
+
+            donnetedUser::create($insert_data);
+
+            return redirect(route('donners'))->with('success','Donner details updated successfully');
+
+        }
+        $data['districts']=DB::table('districts')->get();
+        return view('mngr.donner.add_recent_donners',$data);
+    }
+
+    public function getUsers(Request $request)
+    {
+        $dist_id = $request->dist_id;
+        // return response()->json(['id'=>$dist_id]);
+        $donners = Donner::where('district',$dist_id)->get();
+        return response()->json($donners);
     }
 }
