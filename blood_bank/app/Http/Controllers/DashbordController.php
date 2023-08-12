@@ -13,7 +13,17 @@ class DashbordController extends Controller
     {
         $today=date('Y-m-d H:i:s');
         $prev_date=date('Y-m-d H:i:s',strtotime('-1 month'));
-
+        $bloodGroupDonnerCount =array(
+            'A' =>Donner::where('blood_group',1)->count(),
+            'B' =>Donner::where('blood_group',2)->count(),
+            'AB' =>Donner::where('blood_group',3)->count(),
+            'O' =>Donner::where('blood_group',4)->count(),
+            'a' =>Donner::where('blood_group',5)->count(),
+            'b' =>Donner::where('blood_group',6)->count(),
+            'ab' =>Donner::where('blood_group',7)->count(),
+            'o' =>Donner::where('blood_group',8)->count(),
+        );
+        $data['bloodGroupDonnerCount']=$bloodGroupDonnerCount;
         $data['total_donners']=Donner::all()->count();
         $data['total_mlp_donners']=Donner::where('district',5)->get()->count();
         $data['total_latest_donners']=Donner::whereBetween('created_at',[$prev_date,$today])->get()->count();

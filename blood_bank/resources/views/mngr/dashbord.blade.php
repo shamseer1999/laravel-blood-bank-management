@@ -124,54 +124,69 @@
     <div class="col-md-5 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title text-white">Todo</h4>
-          <div class="add-items d-flex">
+          <h4 class="card-title text-dark">Active Blood Donners</h4>
+          {{-- <div class="add-items d-flex">
             <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
             <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button>
-          </div>
+          </div> --}}
           <div class="list-wrapper">
             <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
               <li>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="checkbox" type="checkbox"> Meeting with Alisa </label>
+                    <input class="checkbox myCheckbox" type="checkbox" checked> O-ve </label>
                 </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
+                {{-- <i class="remove mdi mdi-close-circle-outline"></i> --}}
+                <span class="remove">{{ $bloodGroupDonnerCount['o']}}</span>
               </li>
-              <li class="completed">
+              <li class="form-check">
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="checkbox" type="checkbox" checked> Call John </label>
+                    <input class="checkbox myCheckbox" type="checkbox" checked> AB-ve </label>
                 </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
-              </li>
-              <li>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="checkbox" type="checkbox"> Create invoice </label>
-                </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
+                <span class="remove">{{ $bloodGroupDonnerCount['ab']}}</span>
               </li>
               <li>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="checkbox" type="checkbox"> Print Statements </label>
+                    <input class="checkbox myCheckbox" type="checkbox" checked> B-ve </label>
                 </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
-              </li>
-              <li class="completed">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="checkbox" type="checkbox" checked> Prepare for presentation </label>
-                </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
+                <span class="remove">{{ $bloodGroupDonnerCount['b']}}</span>
               </li>
               <li>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="checkbox" type="checkbox"> Pick up kids from school </label>
+                    <input class="checkbox myCheckbox" type="checkbox" checked> A-ve </label>
                 </div>
-                <i class="remove mdi mdi-close-circle-outline"></i>
+                <span class="remove">{{ $bloodGroupDonnerCount['a']}}</span>
+              </li>
+              <li class="form-check">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="checkbox myCheckbox" type="checkbox" checked> O+ve </label>
+                </div>
+                <span class="remove">{{ $bloodGroupDonnerCount['O']}}</span>
+              </li>
+              <li>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="checkbox myCheckbox" type="checkbox" checked> AB+ve </label>
+                </div>
+                <span class="remove">{{ $bloodGroupDonnerCount['AB']}}</span>
+              </li>
+              <li>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="checkbox myCheckbox" type="checkbox" checked> B+ve </label>
+                </div>
+                <span class="remove">{{ $bloodGroupDonnerCount['B']}}</span>
+              </li>
+              <li>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="checkbox myCheckbox" type="checkbox" checked> A+ve </label>
+                </div>
+                <span class="remove">{{ $bloodGroupDonnerCount['A']}}</span>
               </li>
             </ul>
           </div>
@@ -182,7 +197,7 @@
   @endsection
   <!--Graph goes-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+  
   <script type="text/javascript">
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
