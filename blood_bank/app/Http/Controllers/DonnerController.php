@@ -22,7 +22,7 @@ class DonnerController extends Controller
             return redirect()->route('donners');
         }
         
-        $donners=Donner::with('districts')->when($request->fname !=null,function($query) use($request){
+        $donners=Donner::with('districts','recentDonnated')->when($request->fname !=null,function($query) use($request){
             return $query->where('first_name','like','%'.$request->fname.'%');
         })
         ->when($request->lname !=null,function($query) use($request){
@@ -61,6 +61,8 @@ class DonnerController extends Controller
            //dd($a);
            return (new FastExcel($excelData))->download('donners-list.xlsx');
         }
+
+        // dd($donners);
 
         $data['districts']=DB::table('districts')->get();
         $data['result']=$donners;
@@ -193,7 +195,7 @@ class DonnerController extends Controller
 
             donnetedUser::create($insert_data);
 
-            return redirect(route('donners'))->with('success','Donner details updated successfully');
+            return redirect(route('recent_donners'))->with('success','Donner donated sdetails updated successfully');
 
         }
         $data['districts']=DB::table('districts')->get();
@@ -206,5 +208,17 @@ class DonnerController extends Controller
         // return response()->json(['id'=>$dist_id]);
         $donners = Donner::where('district',$dist_id)->get();
         return response()->json($donners);
+    }
+
+    public function recentDonners(Request $request)
+    {
+        $date = date('Y-m-d',strtotime('-90 days'));
+        // dd($date);
+        $result =donnetedUser::with('Donners')->whereDate('donated_date','>=',$date)->paginate(10);
+        // dd($result);
+
+        $data['result'] = $result;
+
+        return view('mngr.donner.recent_donners',$data);
     }
 }

@@ -9,9 +9,9 @@
             </li>
           </ul>
             <div class="card-body">
-                        <h4 class="card-title">All Donners</h4><br>
+                        <h4 class="card-title">All Recent Donetors (90 days)</h4><br>
                         <form action="" method="GET">
-                        <div class="row">
+                        {{-- <div class="row">
                           <div class="col-md-3">
                             <label for="">First Name</label>
                             <input type="text" name="fname" value="{{Request::get('fname')}}" class="form-control border-primary rounded">
@@ -50,7 +50,7 @@
                             <input type="submit" value="Filter" name="filter" class="btn btn-sm btn-primary rounded">
                             <input type="submit" value="clear" name="filter" class="btn btn-sm btn-primary rounded">
                           </div>
-                        </div>
+                        </div> --}}
                       <br>
                     <br>
                   
@@ -64,7 +64,7 @@
                                 <th> Phone </th>
                                 <th> City </th>
                                 <th> District </th>
-                                <th>Next to Donnate</th>
+                                <th>Donnated Date</th>
                                 <th> Action </th>
                               </tr>
                             </thead>
@@ -73,9 +73,9 @@
                                     @foreach ($result as $item)
                                         <tr>
                                             <td> {{$loop->iteration}} </td>
-                                            <td> {{$item->first_name.' '.$item->last_name}} </td>
+                                            <td> {{$item->Donners->first_name.' '.$item->Donners->last_name}} </td>
                                             <td>
-                                              @switch($item->blood_group)
+                                              @switch($item->Donners->blood_group)
                                                   @case(1)
                                                       {{'A +ve'}}
                                                       @break
@@ -101,33 +101,16 @@
                                                       {{'O -ve'}}
                                               @endswitch
                                             </td>
-                                            <td> {{$item->phone}} </td>
-                                            <td> {{$item->city}}</td>
-                                            <td> {{$item->districts->district_name}}</td> 
+                                            <td> {{$item->Donners->phone}} </td>
+                                            <td> {{$item->Donners->city}}</td>
+                                            <td> {{$item->Donners->districts->district_name}}</td>   
                                             <td>
-                                              
-                                              @if ($item->recentDonnated)
-                                                  @php
-                                                    $now = strtotime(date('Y-m-d'));
-                                                    $donated = strtotime($item->recentDonnated->donated_date);
-                                                    $day_diff = $now - (int)$donated;
-                                                    $roundoff = round($day_diff / (60 * 60 *24));
-                                                    $exact = 90 - $roundoff;
-                                                    if($exact < 10){
-                                                      echo '<span style="color:rgb(12, 186, 82)"><b>'.$exact.'</b></span> Days Left';
-                                                    }else{
-                                                      echo '<span><b>'.$exact.'</b></span> Days Left';
-                                                    }
-                                                  @endphp
-                                                @else
-                                                {{'Not Donated Yet'}}
-                                              @endif
-                                            </td>  
-                                            <td>
-                                                <a href="{{route('view_donner',encrypt($item->id))}}" title="View" style="color: #27367f;"><i class="fa fa-eye" style="font-size:20px"></i></a>
+                                                {{ $item->donated_date ? date('d-m-Y',strtotime($item->donated_date)) : '' }}
+                                                {{-- <a href="{{route('view_donner',encrypt($item->id))}}" title="View" style="color: #27367f;"><i class="fa fa-eye" style="font-size:20px"></i></a>
                                                 <a  href="{{route('edit_donner',encrypt($item->id))}}" title="Edit" style="color: #27367f;"><i class="fa fa-pencil" style="font-size:20px"></i></a>
-                                                
+                                                 --}}
                                             </td>
+                                            <td></td>
                                       </tr>
                                     @endforeach
                                     @else
@@ -139,11 +122,11 @@
                               
                             </tbody>
                           </table>
-                          @if (sizeof($result) >0)
+                          {{-- @if (sizeof($result) >0)
                             <div><br>
                               <input type="submit" name="filter" class="btn btn-primary" style="float:right;" value="Export Data">
                             </div> 
-                          @endif
+                          @endif --}}
                           
 
                           <!--Pagination-->

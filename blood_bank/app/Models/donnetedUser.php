@@ -14,4 +14,9 @@ class donnetedUser extends Model
     protected $fillable = [
         'donated_date','donner_id'
     ];
+
+    public function Donners()
+    {
+        return $this->hasOne(Donner::class,'id','donner_id');
+    }
 }

@@ -82,6 +82,7 @@ Route::middleware('logged_user')->group(function(){
     //Donners
     Route::match(['get','post'],'/donner-register',[DonnerController::class,'add'])->name('add_donner');
     Route::get('/all-donners',[DonnerController::class,'index'])->name('donners');
+    Route::get('/recent-donners',[DonnerController::class,'recentDonners'])->name('recent_donners');
     Route::get('/view-donner{donner_id}',[DonnerController::class,'view'])->name('view_donner');
     Route::match(['get','post'],'/edit-donner{donner_id}',[DonnerController::class,'edit'])->name('edit_donner');
     Route::match(['GET','POST'],'/add-recent-donnotors',[DonnerController::class,'addRecentDonators'])->name('add_recent_donators');

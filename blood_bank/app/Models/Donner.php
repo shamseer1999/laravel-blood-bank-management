@@ -52,4 +52,14 @@ class Donner extends Model
         }
     }
     protected $appends=['blood_group_text'];
+
+    public function donnated()
+    {
+        return $this->hasOne(donnetedUser::class,'donner_id','id');
+    }
+
+    public function recentDonnated()
+    {
+        return $this->donnated()->orderBy('donated_date','DESC');
+    }
 }
