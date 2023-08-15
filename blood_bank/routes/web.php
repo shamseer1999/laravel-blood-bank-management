@@ -93,6 +93,7 @@ Route::middleware('logged_user')->group(function(){
     Route::match(['get','post'],'/edit{adm_id}',[AdminsController::class,'edit'])->name('admin_edit')->middleware('user_role:Super Admin');
     Route::get('delete-admin{adm_id}',[AdminsController::class,'delete'])->name('admin_delete')->middleware('user_role:Super Admin');
     Route::get('activate-admin{adm_id}',[AdminsController::class,'activate'])->name('admin_activate')->middleware('user_role:Super Admin');
+    Route::match(['GET','POST'],'add-admin',[AdminsController::class,'add'])->name('add_admin')->middleware('user_role:Super Admin');
 
     //Roles
     Route::get('/roles',[RoleController::class,'index'])->name('roles')->middleware('user_role:Super Admin');

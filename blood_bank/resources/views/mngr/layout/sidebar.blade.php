@@ -11,7 +11,7 @@
             <span class="font-weight-bold mb-2">@if (auth()->user())
                {{auth()->user()->name}} 
             @endif</span>
-            <span class="text-secondary text-small">Project Manager</span>
+            <span class="text-secondary text-small">{{auth()->user()->username}}</span>
           </div>
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
@@ -30,7 +30,11 @@
         </a>
         <div class="collapse" id="ui-role">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('admins')}}">Admins</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('admins')}}">Admins</a>
+              <ul class="ps-4">
+                <a href="{{ route('add_admin') }}" class="text-decoration-none text-dark"><small> &rarr;</small> Add Admin</a>
+              </ul>
+            </li>
             <li class="nav-item"> 
               <a class="nav-link" href="{{route('roles')}}">Roles</a>
               <ul class="ps-4">
